@@ -34,6 +34,7 @@ The bottleneck in the UNet architecture is the region where the architecture tra
 In summary, the UNet architecture is well-suited for models with images and unlabelled masks, as it effectively processes input data through its encoding and decoding paths, utilizing connecting paths to transfer information and a bottleneck to facilitate the transition between the encoder and decoder. This architecture is designed to produce accurate segmentation results, making it suitable for scenarios where the model needs to be trained on specific parameters and then used to obtain and refine segmentation results.
 
 # Details about Functions in UNet Architecture
+![details](https://www.researchgate.net/publication/347760860/figure/fig1/AS:1013654141014016@1618685388186/MT-UNet-architecture-diagram-Fig-2-a-shows-a-schematic-diagram-of-the-overall.png)
 
 ## 3x3 Convolution
 In U-Net, 3x3 convolutions are utilized throughout the network for effective feature extraction while maintaining computational efficiency. Compared to 1x1 convolutions, which are often used for dimensionality reduction, and larger kernel sizes like 5x5 convolutions, which increase computational complexity, 3x3 convolutions strike a balance between feature extraction and computational efficiency. This makes them well-suited for tasks like image segmentation.
