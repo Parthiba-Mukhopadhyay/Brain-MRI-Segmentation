@@ -31,6 +31,7 @@
 - **TensorFlow, Scikit-image, NumPy, Pandas:** Predefined libraries for image processing and data manipulation.
 
 ---
+---
 
 ```python
 import os
