@@ -1,5 +1,4 @@
----
-
+```markdown
 # Brain MRI Segmentation
 
 ## Dataset
@@ -22,15 +21,14 @@
 - **Einops:** Python library used to manipulate tensors (multidimensional arrays) in ML models.
 - **Surfa:** Collection of Python utilities for medical image analysis and mesh-based surface processing.
 - **PyTorch Lightning:** Lightweight PyTorch wrapper for high-performance AI research, aiming to scale models, not the boilerplate.
-- **Skull Stripping:** Open-source library, part of PyTorch Lightning, for preparing skull stripping methods on T1 sequence head MRI images.
+- **Skull Stripping:** Open-source library, for preparing skull stripping methods on T1 sequence head MRI images.
 - **Argparse:** Module for creating programs in a command-line environment.
 - **Itertools:** Module implementing iterator building blocks inspired by constructs from APL, Haskell, and SML.
 - **Shutil, Glob:** Libraries for file handling and manipulation.
 - **Seaborn, Matplotlib:** Libraries for visualization and graphical representation.
 - **Tqdm:** Library for animated loading and processing sections.
 - **TensorFlow, Scikit-image, NumPy, Pandas:** Predefined libraries for image processing and data manipulation.
-
----
+```
 
 
 ```python
@@ -73,7 +71,6 @@ The `data_iterator` function takes two generators (`image_gen` and `mask_gen`) a
 ## Architecture Explanation
 
 ### Convolutional Layer (Conv2D)
-```python
 x = Conv2D(filters=n_filters, 
            kernel_size=(kernel_size, kernel_size),
            kernel_initializer='he_normal', 
@@ -126,10 +123,6 @@ The output layer applies a 1x1 convolutional layer with sigmoid activation to pr
 
 
 ```
-
-
-
-```python
 callbacks = [
     EarlyStopping(patience=10, verbose=1),
     ReduceLROnPlateau(factor=0.1, patience=5, min_lr=1e-5, verbose=1),
