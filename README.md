@@ -15,6 +15,7 @@ U-Net, a specific type of CNN architecture designed for image segmentation, addr
 3. **Fully Convolutional**: U-Net is fully convolutional, allowing it to operate on images of arbitrary sizes and process them in a single forward pass. This property enhances data efficiency by leveraging shared weights across spatial locations and enables U-Net to learn meaningful representations even with limited training data.
 
 # UNet Model Architecture
+![UNet Model Architecture](https://www.mdpi.com/applsci/applsci-12-06004/article_deploy/html/images/applsci-12-06004-g003-550.jpg)
 
 The UNet architecture is a specialized model designed for image segmentation tasks, particularly in the context of medical image segmentation. It consists of an encoder-decoder architecture with connecting paths, engineered to handle unlabelled masks and produce accurate segmentation results.
 
