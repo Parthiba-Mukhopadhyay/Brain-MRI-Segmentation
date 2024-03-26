@@ -31,7 +31,7 @@
 - **TensorFlow, Scikit-image, NumPy, Pandas:** Predefined libraries for image processing and data manipulation.
 
 ---
----
+
 
 ```python
 import os
@@ -66,6 +66,68 @@ def data_iterator(image_gen, mask_gen):
         yield img, mask
 ```
 The `data_iterator` function takes two generators (`image_gen` and `mask_gen`) as input and yields batches of images and masks as tuples `(img, mask)` by iterating over them using `zip`.
+
+```markdown
+# UNet Model Architecture
+
+## Architecture Explanation
+
+### Convolutional Layer (Conv2D)
+```python
+x = Conv2D(filters=n_filters, 
+           kernel_size=(kernel_size, kernel_size),
+           kernel_initializer='he_normal', 
+           padding='same')(input_tensor)
+```
+The `Conv2D` layer creates a convolutional layer with the specified number of filters (`n_filters`) and kernel size. The `kernel_initializer` parameter is set to 'he_normal', which initializes the kernel weights using the He normal initialization method. The `padding` parameter is set to 'same', indicating that zero padding will be applied to maintain the same spatial dimensions in the output feature map as in the input.
+
+### Batch Normalization
+```python
+if batchnorm:
+    x = BatchNormalization()(x)
+```
+Batch normalization normalizes the activations of the previous convolutional layer (`x`) to improve training stability and accelerate convergence.
+
+### ReLU Activation
+```python
+x = Activation('relu')(x)
+```
+The ReLU activation function is applied to introduce non-linearity to the output of the convolutional layer.
+
+### Max Pooling Layer
+```python
+p1 = MaxPooling2D((2, 2))(c1)
+```
+Max pooling is applied to downsample the feature maps obtained from the convolutional block (`c1`) by taking the maximum value in each 2x2 window.
+
+### Dropout Regularization
+```python
+p1 = Dropout(dropout)(p1)
+```
+Dropout regularization is applied to the output of the max pooling layer (`p1`) to prevent overfitting by randomly setting a fraction of input units to zero during training.
+
+### Transposed Convolution Layer (Conv2DTranspose)
+```python
+u6 = Conv2DTranspose(n_filters * 8, (3, 3), strides=(2, 2), padding='same')(c5)
+```
+The `Conv2DTranspose` layer performs transposed convolution (or deconvolution) to upsample the feature maps (`c5`). It increases the spatial dimensions of the feature maps while retaining the number of channels.
+
+### Concatenation
+```python
+u6 = concatenate([u6, c4])
+```
+The upsampled feature maps (`u6`) are concatenated with the corresponding feature maps from the encoding path (`c4`) to preserve spatial information and enhance segmentation accuracy.
+
+### Output Layer
+```python
+outputs = Conv2D(1, (1, 1), activation='sigmoid')(c9)
+```
+The output layer applies a 1x1 convolutional layer with sigmoid activation to produce the final segmentation mask (`outputs`), where each pixel represents the probability of belonging to the foreground class.
+
+
+```
+
+
 
 ```python
 callbacks = [
