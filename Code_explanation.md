@@ -1,5 +1,3 @@
-Certainly! Below is a stylized version of the provided text suitable for a GitHub README:
-
 ---
 
 # Brain MRI Segmentation
@@ -34,3 +32,48 @@ Certainly! Below is a stylized version of the provided text suitable for a GitHu
 
 ---
 
+```python
+import os
+
+dirs = []
+masks = []
+images = []
+
+for dirname, _, filenames in os.walk(DataPath):
+    for filename in filenames:
+        if 'mask' in filename:
+            dirs.append(dirname.replace(DataPath, ''))
+            masks.append(filename)
+            images.append(filename.replace('_mask', ''))
+```
+The above code iterates through the directory specified by `DataPath` using `os.walk()`, which generates the file names in a directory tree by walking either top-down or bottom-up. For each file, it checks if the filename contains the substring 'mask'. If it does, it appends the directory name (with `DataPath` removed), the mask filename, and the corresponding image filename (with '_mask' removed) to separate lists. This process effectively identifies image and mask files within the specified directory structure and organizes their names into separate lists.
+
+```python
+timage_generator = imagegen.flow_from_dataframe(dataframe=train, 
+                                                x_col="image-path", 
+                                                batch_size=BATCH_SIZE, 
+                                                seed=42, 
+                                                class_mode=None,
+                                                target_size=(ImgHeight,ImgWidth),
+                                                color_mode='rgb')
+```
+In this code block, a Keras `ImageDataGenerator` is initialized to generate batches of training images using the data specified in the dataframe `train`. The `flow_from_dataframe` method is used to generate batches of images from the dataframe. Parameters such as `x_col` specify the column in the dataframe containing the image file paths, `batch_size` sets the size of each batch, `seed` sets the random seed for reproducibility, `class_mode=None` indicates that the generator will not assign any labels to the images, `target_size` specifies the dimensions to which the images will be resized, and `color_mode='rgb'` specifies that the images will be loaded in RGB color mode.
+
+```python
+def data_iterator(image_gen, mask_gen):
+    for img, mask in zip(image_gen, mask_gen):
+        yield img, mask
+```
+The `data_iterator` function takes two generators (`image_gen` and `mask_gen`) as input and yields batches of images and masks as tuples `(img, mask)` by iterating over them using `zip`.
+
+```python
+callbacks = [
+    EarlyStopping(patience=10, verbose=1),
+    ReduceLROnPlateau(factor=0.1, patience=5, min_lr=1e-5, verbose=1),
+    ModelCheckpoint('model-brain-mri.h5', verbose=1, save_best_only=True, save_weights_only=True)
+]
+```
+These callback functions are used during the training of a neural network model:
+- `EarlyStopping`: Stops training if a monitored metric has stopped improving for a specified number of epochs (patience).
+- `ReduceLROnPlateau`: Reduces the learning rate when a monitored metric has stopped improving. It reduces the learning rate by a factor if no improvement is seen for a number of epochs defined by the patience parameter.
+- `ModelCheckpoint`: Saves the model's weights to a file whenever the validation loss has improved. The `save_best_only=True` argument ensures that only the weights of the best-performing model are saved.
