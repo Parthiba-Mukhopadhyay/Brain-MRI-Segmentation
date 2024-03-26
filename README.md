@@ -54,6 +54,9 @@ For classification tasks in U-Net, cross-entropy loss is commonly employed to pe
 ## Concatenation
 In the U-Net architecture, concatenation is used to establish skip connections between the contracting (encoder) and expanding (decoder) paths. These skip connections enable direct communication between the two paths, facilitating the preservation of fine-grained spatial information and propagation of low-level details during upsampling. By concatenating feature maps, U-Net ensures retention of both local and global context, enhancing precise localization and accurate segmentation.
 
+## Transpose Convolution
+In U-Net, transposed convolution is used in the decoding path to upsample feature maps, restoring spatial resolution lost during downsampling. These layers increase spatial dimensions while expanding channel numbers, aiding in reconstructing segmented output at the original image resolution. Gradually upsampling preserves finer details essential for accurate segmentation, often followed by concatenation with encoding path features for multi-scale feature fusion.
+
 # Modifications in UNet Architecture
 
 ## DeepLabV3
