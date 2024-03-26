@@ -122,7 +122,7 @@ outputs = Conv2D(1, (1, 1), activation='sigmoid')(c9)
 The output layer applies a 1x1 convolutional layer with sigmoid activation to produce the final segmentation mask (`outputs`), where each pixel represents the probability of belonging to the foreground class.
 
 
-```
+```python
 callbacks = [
     EarlyStopping(patience=10, verbose=1),
     ReduceLROnPlateau(factor=0.1, patience=5, min_lr=1e-5, verbose=1),
