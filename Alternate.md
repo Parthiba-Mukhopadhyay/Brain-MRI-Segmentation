@@ -15,9 +15,8 @@ The provided segmentation labels have values of 1 for NCR & NET, 2 for ED, 4 for
 **Dice coefficient**
 , which is essentially a measure of overlap between two samples. This measure ranges from 0 to 1 where a Dice coefficient of 1 denotes perfect and complete overlap. The Dice coefficient was originally developed for binary data, and can be calculated as:
 
-![dice loss](https://wikimedia.org/api/rest_v1/media/math/render/svg/a80a97215e1afc0b222e604af1b2099dc9363d3b)
+![image](https://github.com/Parthiba-Mukhopadhyay/Brain-MRI-Segmentation/assets/89331202/549c1f5c-5c16-4e6e-9e4c-efae07c0c80d)
 
 **As matrices**
-![dice loss](https://www.jeremyjordan.me/content/images/2018/05/intersection-1.png)
+![image](https://github.com/Parthiba-Mukhopadhyay/Brain-MRI-Segmentation/assets/89331202/a75212b4-2b37-43ec-bf65-9858380c8fb7)
 
-[Implementation, (images above) and explanation can be found here](https://www.jeremyjordan.me/semantic-segmentation/)
