@@ -9,3 +9,15 @@ The sub-regions of tumor considered for evaluation are: 1) the "enhancing tumor"
 The provided segmentation labels have values of 1 for NCR & NET, 2 for ED, 4 for ET, and 0 for everything else.
 
 ![Brats official annotations](https://www.med.upenn.edu/cbica/assets/user-content/images/BraTS/brats-tumor-subregions.jpg)
+
+
+
+**Dice coefficient**
+, which is essentially a measure of overlap between two samples. This measure ranges from 0 to 1 where a Dice coefficient of 1 denotes perfect and complete overlap. The Dice coefficient was originally developed for binary data, and can be calculated as:
+
+![dice loss](https://wikimedia.org/api/rest_v1/media/math/render/svg/a80a97215e1afc0b222e604af1b2099dc9363d3b)
+
+**As matrices**
+![dice loss](https://www.jeremyjordan.me/content/images/2018/05/intersection-1.png)
+
+[Implementation, (images above) and explanation can be found here](https://www.jeremyjordan.me/semantic-segmentation/)
